@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,8 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
-    'student',
-    'teacher',
+    'api',
     'userauths',
 ]
 
@@ -59,7 +61,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,7 +124,51 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+STATIC_ROOT = str(BASE_DIR / 'templates')
+
+MEDIA_URL = '/media/' # 127.0.0.1/media/avatar.jpg
+
+MEDIA_ROOT = str(BASE_DIR / 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    # Title on the brand (19 chars max)
+    "site_title": "Philtek LMS",
+    
+    # Title on the login screen
+    "site_header": "Philtek LMS Admin",
+
+    "site_brand": "Philtek LMS",
+    
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to Philtek LMS Admin Panel",
+    
+    # Copyright on the footer
+    "copyright": "Philtek LMS Ltd",
+    
+    # The model admin to search from the search bar
+    "search_model": "auth.User",
+    
+    # Field name on user model that contains avatar image
+    "user_avatar": None,
+    
+    # Links to put along the top menu
+    "topmenu_links": [
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+        
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "core"},
+        {"app": "userauths"},
+    ],
+    
+    # Whether to show the UI customizer on the sidebar
+    "show_ui_builder": True,
+    
+}
