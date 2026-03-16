@@ -26,7 +26,7 @@ pip-wheel-metadata/
 venv/
 env/
 ENV/
-lms_venv/
+lms_360_venv/
 .venv/
 env.bak/
 venv.bak/
@@ -42,6 +42,7 @@ media/
 !media/.gitkeep
 staticfiles/
 *.pid
+cred_details
 
 # PyCharm
 .idea/
