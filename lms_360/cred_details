@@ -1,0 +1,14 @@
+postgres password: superuser
+django-admin email: josepheneji43@gmail.com
+admin_username: lms_superuser
+admin password: lms360_admin_securekey
+
+
+# First registered user:
+{
+  "email": "laserspeed001@gmail.com",
+  "username": "laser",
+  "password": "StrongPass123",
+  "first_name": "Laser",
+  "last_name": "Speed"
+}
